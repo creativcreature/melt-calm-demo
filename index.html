@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm in the Chaos — AI-Powered Productivity System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        /* Main Layout */
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            padding: 24px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.2rem;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Focus Section */
+        .focus-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(99, 102, 241, 0.1) 100%);
+        }
+
+        .focus-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .focus-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .focus-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--primary);
+        }
+
+        .focus-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .focus-text {
+            flex: 1;
+        }
+
+        .focus-text h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .focus-text p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .focus-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-progress {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent);
+        }
+
+        .status-pending {
+            background: rgba(148, 163, 184, 0.2);
+            color: var(--text-secondary);
+        }
+
+        /* AI Assistants */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .ai-card {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .ai-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .ai-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .ai-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .ai-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .ai-card .status {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Calendar Widget */
+        .calendar-mini {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+
+        .calendar-day {
+            padding: 8px 4px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .calendar-date {
+            padding: 8px 4px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calendar-date:hover {
+            background: var(--bg-dark);
+        }
+
+        .calendar-date.today {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .calendar-date.has-event::after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 50%;
+            margin: 4px auto 0;
+        }
+
+        /* Inbox */
+        .inbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .inbox-item:last-child {
+            border-bottom: none;
+        }
+
+        .inbox-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inbox-content {
+            flex: 1;
+        }
+
+        .inbox-content h4 {
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+        }
+
+        .inbox-content p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Quick Add */
+        .quick-add {
+            display: flex;
+            gap: 8px;
+        }
+
+        .quick-add input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .quick-add input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .quick-add input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .quick-add button {
+            padding: 12px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* Personal Section */
+        .personal-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(16, 185, 129, 0.1) 100%);
+        }
+
+        .personal-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .personal-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .personal-icon {
+            font-size: 1.2rem;
+        }
+
+        .personal-text {
+            flex: 1;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.85rem;
+        }
+
+        .demo-banner strong {
+            margin-right: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+            
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 16px;
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-banner">
+        <strong>✨ DEMO</strong> This is a prototype of the "Calm in the Chaos" productivity system built by MELT + AI
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🧘</div>
+            <div class="logo-text">Calm <span>in the Chaos</span></div>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-ghost">Settings</button>
+            <button class="btn btn-primary">+ Quick Add</button>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="content">
+            <!-- Today's Focus -->
+            <div class="card focus-card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon">🔥</span> Today's Focus</h2>
+                    <span style="color: var(--text-secondary); font-size: 0.85rem;">3 items max</span>
+                </div>
+                <div class="card-body">
+                    <div class="focus-items">
+                        <div class="focus-item">
+                            <div class="focus-number">1</div>
+                            <div class="focus-text">
+                                <h4>Finalize Q1 campaign deck for TopGolf</h4>
+                                <p>Due today • High priority</p>
+                            </div>
+                            <span class="focus-status status-progress">In Progress</span>
+                        </div>
+                        <div class="focus-item">
+                            <div class="focus-number">2</div>
+                            <div class="focus-text">
+                                <h4>Review competitor analysis from AI assistant</h4>
+                                <p>Research delivered this morning</p>
+                            </div>
+                            <span class="focus-status status-pending">Pending</span>
+                        </div>
+                        <div class="focus-item">
+                            <div class="focus-number">3</div>
+                            <div class="focus-text">
+                                <h4>Call with Boston care facility @ 3pm</h4>
+                                <p>Personal • Mom's placement</p>
+                            </div>
+                            <span class="focus-status status-pending">Scheduled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Assistants -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon">🤖</span> AI Assistants</h2>
+                    <span style="color: var(--secondary); font-size: 0.85rem;">All systems active</span>
+                </div>
+                <div class="card-body">
+                    <div class="ai-grid">
+                        <div class="ai-card">
+                            <div class="ai-icon" style="background: rgba(99, 102, 241, 0.2);">📅</div>
+                            <h4>Motion</h4>
+                            <p>Auto-scheduling your tasks into available time slots</p>
+                            <div class="status">
+                                <span class="status-dot"></span>
+                                <span style="color: var(--secondary);">Active</span>
+                                <span style="color: var(--text-secondary); margin-left: auto;">3 tasks scheduled</span>
+                            </div>
+                        </div>
+                        <div class="ai-card">
+                            <div class="ai-icon" style="background: rgba(16, 185, 129, 0.2);">🎙️</div>
+                            <h4>Otter.ai</h4>
+                            <p>Taking notes in your meetings automatically</p>
+                            <div class="status">
+                                <span class="status-dot"></span>
+                                <span style="color: var(--secondary);">Active</span>
+                                <span style="color: var(--text-secondary); margin-left: auto;">2 meetings today</span>
+                            </div>
+                        </div>
+                        <div class="ai-card">
+                            <div class="ai-icon" style="background: rgba(245, 158, 11, 0.2);">🔍</div>
+                            <h4>Research Bot</h4>
+                            <p>Running competitor analysis overnight</p>
+                            <div class="status">
+                                <span class="status-dot"></span>
+                                <span style="color: var(--secondary);">Complete</span>
+                                <span style="color: var(--text-secondary); margin-left: auto;">Report ready</span>
+                            </div>
+                        </div>
+                        <div class="ai-card">
+                            <div class="ai-icon" style="background: rgba(239, 68, 68, 0.2);">📧</div>
+                            <h4>Email Triage</h4>
+                            <p>Filtering inbox, surfacing priorities</p>
+                            <div class="status">
+                                <span class="status-dot"></span>
+                                <span style="color: var(--secondary);">Active</span>
+                                <span style="color: var(--text-secondary); margin-left: auto;">47 → 8 emails</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Section -->
+            <div class="card personal-card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon">🏠</span> Personal — Mom Care</h2>
+                    <button class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.8rem;">View All</button>
+                </div>
+                <div class="card-body">
+                    <div class="personal-item">
+                        <span class="personal-icon">📋</span>
+                        <span class="personal-text">Application submitted to Sunrise Senior Living</span>
+                        <span style="color: var(--secondary); font-size: 0.8rem;">✓ Done</span>
+                    </div>
+                    <div class="personal-item">
+                        <span class="personal-icon">📞</span>
+                        <span class="personal-text">Call facility coordinator @ 3pm</span>
+                        <span style="color: var(--accent); font-size: 0.8rem;">Today</span>
+                    </div>
+                    <div class="personal-item">
+                        <span class="personal-icon">📄</span>
+                        <span class="personal-text">Gather financial documents for Medicaid</span>
+                        <span style="color: var(--text-secondary); font-size: 0.8rem;">This week</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Calendar -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon">📅</span> January 2026</h2>
+                </div>
+                <div class="card-body">
+                    <div class="calendar-mini">
+                        <div class="calendar-day">S</div>
+                        <div class="calendar-day">M</div>
+                        <div class="calendar-day">T</div>
+                        <div class="calendar-day">W</div>
+                        <div class="calendar-day">T</div>
+                        <div class="calendar-day">F</div>
+                        <div class="calendar-day">S</div>
+                        <div class="calendar-date">26</div>
+                        <div class="calendar-date has-event">27</div>
+                        <div class="calendar-date">28</div>
+                        <div class="calendar-date today">29</div>
+                        <div class="calendar-date has-event">30</div>
+                        <div class="calendar-date">31</div>
+                        <div class="calendar-date">1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inbox -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon">📥</span> Inbox</h2>
+                    <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">4</span>
+                </div>
+                <div class="card-body">
+                    <div class="inbox-item">
+                        <div class="inbox-icon">📝</div>
+                        <div class="inbox-content">
+                            <h4>Review Chick-fil-A brief</h4>
+                            <p>Added 2h ago</p>
+                        </div>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-icon">📊</div>
+                        <div class="inbox-content">
+                            <h4>AI research: NIL trends</h4>
+                            <p>Completed overnight</p>
+                        </div>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-icon">💡</div>
+                        <div class="inbox-content">
+                            <h4>Idea: March Madness activation</h4>
+                            <p>Quick capture</p>
+                        </div>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-icon">📞</div>
+                        <div class="inbox-content">
+                            <h4>Follow up with Boston realtor</h4>
+                            <p>Personal</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-add" style="margin-top: 16px;">
+                        <input type="text" placeholder="Add to inbox...">
+                        <button>+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon">💡</span> How It Works</h2>
+                </div>
+                <div class="card-body" style="font-size: 0.85rem; color: var(--text-secondary);">
+                    <p style="margin-bottom: 12px;"><strong style="color: var(--text-primary);">Morning (2 min):</strong> Check focus items, scan calendar</p>
+                    <p style="margin-bottom: 12px;"><strong style="color: var(--text-primary);">During Day:</strong> AI handles research, notes, scheduling</p>
+                    <p><strong style="color: var(--text-primary);">Evening (3 min):</strong> Clear inbox, set tomorrow's focus</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <p>Built with 🤖 by <a href="#">MELT Atlanta</a> + AI</p>
+        <p style="margin-top: 8px;">Prototype Demo — "Calm in the Chaos" Productivity System</p>
+    </footer>
+</body>
+</html>
