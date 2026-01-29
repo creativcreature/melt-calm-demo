@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm in the Chaos — AI-Powered Productivity System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Julianne's Calm System — MELT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --border: #334155;
+            --primary: #0078d4;
+            --primary-light: #50a0dc;
+            --secondary: #107c10;
+            --accent: #ffb900;
+            --calm: #7c3aed;
+            --bg-light: #faf9f8;
+            --bg-white: #ffffff;
+            --text-dark: #323130;
+            --text-secondary: #605e5c;
+            --border: #e1dfdd;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         * {
@@ -25,21 +27,22 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
             min-height: 100vh;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+            background: var(--bg-white);
             border-bottom: 1px solid var(--border);
-            padding: 20px 40px;
+            padding: 16px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: var(--shadow);
         }
 
         .logo {
@@ -49,91 +52,69 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--calm), var(--primary));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-        }
-
-        .logo-text {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .logo-text span {
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
+            font-size: 22px;
             color: white;
         }
 
-        .btn-primary:hover {
-            background: var(--primary-dark);
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
-        .btn-ghost {
-            background: transparent;
+        .logo-text span {
+            font-weight: 400;
             color: var(--text-secondary);
-            border: 1px solid var(--border);
         }
 
-        .btn-ghost:hover {
-            background: var(--bg-card);
-            color: var(--text-primary);
+        .greeting {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .greeting strong {
+            color: var(--text-dark);
         }
 
         /* Main Layout */
         .main {
             display: grid;
-            grid-template-columns: 1fr 320px;
+            grid-template-columns: 1fr 340px;
             gap: 24px;
-            padding: 24px 40px;
-            max-width: 1600px;
+            padding: 24px 32px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .content {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
         /* Cards */
         .card {
-            background: var(--bg-card);
-            border-radius: 16px;
+            background: var(--bg-white);
+            border-radius: 8px;
             border: 1px solid var(--border);
+            box-shadow: var(--shadow);
             overflow: hidden;
         }
 
         .card-header {
-            padding: 20px 24px;
+            padding: 16px 20px;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--bg-light);
         }
 
         .card-title {
@@ -142,315 +123,329 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .card-title .icon {
-            font-size: 1.2rem;
+            color: var(--text-dark);
         }
 
         .card-body {
-            padding: 24px;
+            padding: 20px;
         }
 
-        /* Focus Section */
-        .focus-card {
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(99, 102, 241, 0.1) 100%);
+        /* My Day Section */
+        .myday-card {
+            border-left: 4px solid var(--primary);
         }
 
-        .focus-items {
+        .myday-card .card-header {
+            background: linear-gradient(90deg, rgba(0,120,212,0.08), transparent);
+        }
+
+        .task-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .focus-item {
+        .task-item {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--bg-light);
+            border-radius: 6px;
             border: 1px solid var(--border);
-            transition: all 0.2s;
+            transition: all 0.15s;
         }
 
-        .focus-item:hover {
-            background: rgba(255, 255, 255, 0.06);
+        .task-item:hover {
             border-color: var(--primary);
+            background: rgba(0,120,212,0.04);
         }
 
-        .focus-number {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 8px;
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.15s;
         }
 
-        .focus-text {
+        .task-checkbox:hover {
+            border-color: var(--primary);
+        }
+
+        .task-checkbox.starred {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .task-checkbox.starred::after {
+            content: '★';
+            color: white;
+            font-size: 12px;
+        }
+
+        .task-content {
             flex: 1;
         }
 
-        .focus-text h4 {
+        .task-content h4 {
             font-size: 0.95rem;
-            margin-bottom: 4px;
+            font-weight: 500;
+            margin-bottom: 2px;
         }
 
-        .focus-text p {
+        .task-content p {
             font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
-        .focus-status {
-            padding: 6px 12px;
-            border-radius: 20px;
+        .task-tag {
+            padding: 4px 10px;
+            border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 500;
         }
 
-        .status-progress {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--accent);
+        .tag-work {
+            background: rgba(0,120,212,0.1);
+            color: var(--primary);
         }
 
-        .status-pending {
-            background: rgba(148, 163, 184, 0.2);
-            color: var(--text-secondary);
+        .tag-personal {
+            background: rgba(124,58,237,0.1);
+            color: var(--calm);
         }
 
-        /* AI Assistants */
-        .ai-grid {
+        .tag-mom {
+            background: rgba(16,124,16,0.1);
+            color: var(--secondary);
+        }
+
+        /* Email Section */
+        .email-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
-        .ai-card {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.2s;
+        .email-stat {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 6px;
         }
 
-        .ai-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-2px);
+        .email-stat .number {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
         }
 
-        .ai-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        .ai-card h4 {
-            font-size: 0.95rem;
-            margin-bottom: 6px;
-        }
-
-        .ai-card p {
+        .email-stat .label {
             font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
-        .ai-card .status {
-            margin-top: 12px;
+        .email-folders {
             display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--secondary);
+        .folder-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .folder-icon {
+            font-size: 1.1rem;
+        }
+
+        .folder-count {
+            margin-left: auto;
+            background: var(--border);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Pilates Section */
+        .pilates-card {
+            border-left: 4px solid var(--calm);
+        }
+
+        .pilates-card .card-header {
+            background: linear-gradient(90deg, rgba(124,58,237,0.08), transparent);
+        }
+
+        .pilates-schedule {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pilates-day {
+            padding: 12px 20px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid var(--border);
+        }
+
+        .pilates-day.active {
+            border-color: var(--calm);
+            background: rgba(124,58,237,0.08);
+        }
+
+        .pilates-day .day {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .pilates-day .time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
 
         /* Sidebar */
         .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
-        /* Calendar Widget */
-        .calendar-mini {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+        /* Today Card */
+        .today-card .date-display {
             text-align: center;
+            padding: 20px;
         }
 
-        .calendar-day {
-            padding: 8px 4px;
+        .date-display .day-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .date-display .day-number {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .date-display .month {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Meetings */
+        .meeting-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meeting-item:last-child {
+            border-bottom: none;
+        }
+
+        .meeting-time {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .meeting-details h4 {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .meeting-details p {
             font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
-        .calendar-date {
-            padding: 8px 4px;
-            font-size: 0.85rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
+        /* Quick Reference */
+        .quick-ref {
+            background: linear-gradient(135deg, var(--bg-white), rgba(124,58,237,0.05));
         }
 
-        .calendar-date:hover {
-            background: var(--bg-dark);
-        }
-
-        .calendar-date.today {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
-
-        .calendar-date.has-event::after {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 50%;
-            margin: 4px auto 0;
-        }
-
-        /* Inbox */
-        .inbox-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 0;
+        .quick-ref-item {
+            padding: 10px 0;
             border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
         }
 
-        .inbox-item:last-child {
+        .quick-ref-item:last-child {
             border-bottom: none;
         }
 
-        .inbox-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--bg-dark);
-            border-radius: 8px;
+        .quick-ref-item strong {
+            color: var(--calm);
+        }
+
+        /* Mom Care */
+        .mom-card {
+            border-left: 4px solid var(--secondary);
+        }
+
+        .mom-card .card-header {
+            background: linear-gradient(90deg, rgba(16,124,16,0.08), transparent);
+        }
+
+        .mom-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .inbox-content {
-            flex: 1;
-        }
-
-        .inbox-content h4 {
-            font-size: 0.85rem;
-            margin-bottom: 2px;
-        }
-
-        .inbox-content p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        /* Quick Add */
-        .quick-add {
-            display: flex;
-            gap: 8px;
-        }
-
-        .quick-add input {
-            flex: 1;
-            padding: 12px 16px;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
         }
 
-        .quick-add input::placeholder {
-            color: var(--text-secondary);
+        .mom-item:last-child {
+            border-bottom: none;
         }
 
-        .quick-add input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .quick-add button {
-            padding: 12px 16px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+        .mom-icon {
             font-size: 1.1rem;
         }
 
-        /* Personal Section */
-        .personal-card {
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(16, 185, 129, 0.1) 100%);
+        .mom-status {
+            margin-left: auto;
+            font-size: 0.8rem;
         }
 
-        .personal-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            margin-bottom: 8px;
+        .status-done {
+            color: var(--secondary);
         }
 
-        .personal-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .personal-icon {
-            font-size: 1.2rem;
-        }
-
-        .personal-text {
-            flex: 1;
-            font-size: 0.85rem;
+        .status-pending {
+            color: var(--accent);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
             color: var(--text-secondary);
             font-size: 0.85rem;
-        }
-
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* Demo Banner */
-        .demo-banner {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 12px;
-            font-size: 0.85rem;
-        }
-
-        .demo-banner strong {
-            margin-right: 8px;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
         }
 
         /* Responsive */
@@ -460,237 +455,257 @@
                 padding: 16px;
             }
             
-            .ai-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .header {
                 padding: 16px;
                 flex-direction: column;
-                gap: 16px;
+                gap: 12px;
+                text-align: center;
             }
+
+            .email-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Breath animation */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .pilates-card {
+            animation: breathe 4s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <div class="demo-banner">
-        <strong>✨ DEMO</strong> This is a prototype of the "Calm in the Chaos" productivity system built by MELT + AI
-    </div>
-
     <header class="header">
         <div class="logo">
             <div class="logo-icon">🧘</div>
-            <div class="logo-text">Calm <span>in the Chaos</span></div>
+            <div class="logo-text">My Day <span>— Calm System</span></div>
         </div>
-        <div class="header-actions">
-            <button class="btn btn-ghost">Settings</button>
-            <button class="btn btn-primary">+ Quick Add</button>
+        <div class="greeting">
+            Good morning, <strong>Julianne</strong> — Wednesday, January 29
         </div>
     </header>
 
     <main class="main">
         <div class="content">
-            <!-- Today's Focus -->
-            <div class="card focus-card">
+            <!-- My Day -->
+            <div class="card myday-card">
                 <div class="card-header">
-                    <h2 class="card-title"><span class="icon">🔥</span> Today's Focus</h2>
-                    <span style="color: var(--text-secondary); font-size: 0.85rem;">3 items max</span>
+                    <h2 class="card-title">☀️ My Day — 3 Priorities</h2>
+                    <span style="color: var(--text-secondary); font-size: 0.85rem;">Focus on these today</span>
                 </div>
                 <div class="card-body">
-                    <div class="focus-items">
-                        <div class="focus-item">
-                            <div class="focus-number">1</div>
-                            <div class="focus-text">
-                                <h4>Finalize Q1 campaign deck for TopGolf</h4>
-                                <p>Due today • High priority</p>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <div class="task-checkbox starred"></div>
+                            <div class="task-content">
+                                <h4>Finalize TopGolf proposal deck</h4>
+                                <p>Due today — Vince needs by 3pm</p>
                             </div>
-                            <span class="focus-status status-progress">In Progress</span>
+                            <span class="task-tag tag-work">Work</span>
                         </div>
-                        <div class="focus-item">
-                            <div class="focus-number">2</div>
-                            <div class="focus-text">
-                                <h4>Review competitor analysis from AI assistant</h4>
-                                <p>Research delivered this morning</p>
+                        <div class="task-item">
+                            <div class="task-checkbox"></div>
+                            <div class="task-content">
+                                <h4>Review competitor research from AI</h4>
+                                <p>Summary delivered this morning</p>
                             </div>
-                            <span class="focus-status status-pending">Pending</span>
+                            <span class="task-tag tag-work">Work</span>
                         </div>
-                        <div class="focus-item">
-                            <div class="focus-number">3</div>
-                            <div class="focus-text">
-                                <h4>Call with Boston care facility @ 3pm</h4>
-                                <p>Personal • Mom's placement</p>
+                        <div class="task-item">
+                            <div class="task-checkbox"></div>
+                            <div class="task-content">
+                                <h4>Call Boston care facility coordinator</h4>
+                                <p>Scheduled 3:30pm — Mom placement</p>
                             </div>
-                            <span class="focus-status status-pending">Scheduled</span>
+                            <span class="task-tag tag-mom">Mom</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- AI Assistants -->
+            <!-- Email Sanity -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title"><span class="icon">🤖</span> AI Assistants</h2>
-                    <span style="color: var(--secondary); font-size: 0.85rem;">All systems active</span>
+                    <h2 class="card-title">📧 Email — Organized</h2>
                 </div>
                 <div class="card-body">
-                    <div class="ai-grid">
-                        <div class="ai-card">
-                            <div class="ai-icon" style="background: rgba(99, 102, 241, 0.2);">📅</div>
-                            <h4>Motion</h4>
-                            <p>Auto-scheduling your tasks into available time slots</p>
-                            <div class="status">
-                                <span class="status-dot"></span>
-                                <span style="color: var(--secondary);">Active</span>
-                                <span style="color: var(--text-secondary); margin-left: auto;">3 tasks scheduled</span>
-                            </div>
+                    <div class="email-stats">
+                        <div class="email-stat">
+                            <div class="number">8</div>
+                            <div class="label">Need Action</div>
                         </div>
-                        <div class="ai-card">
-                            <div class="ai-icon" style="background: rgba(16, 185, 129, 0.2);">🎙️</div>
-                            <h4>Otter.ai</h4>
-                            <p>Taking notes in your meetings automatically</p>
-                            <div class="status">
-                                <span class="status-dot"></span>
-                                <span style="color: var(--secondary);">Active</span>
-                                <span style="color: var(--text-secondary); margin-left: auto;">2 meetings today</span>
-                            </div>
+                        <div class="email-stat">
+                            <div class="number">3</div>
+                            <div class="label">Waiting On</div>
                         </div>
-                        <div class="ai-card">
-                            <div class="ai-icon" style="background: rgba(245, 158, 11, 0.2);">🔍</div>
-                            <h4>Research Bot</h4>
-                            <p>Running competitor analysis overnight</p>
-                            <div class="status">
-                                <span class="status-dot"></span>
-                                <span style="color: var(--secondary);">Complete</span>
-                                <span style="color: var(--text-secondary); margin-left: auto;">Report ready</span>
-                            </div>
+                        <div class="email-stat">
+                            <div class="number">47</div>
+                            <div class="label">Filed Away</div>
                         </div>
-                        <div class="ai-card">
-                            <div class="ai-icon" style="background: rgba(239, 68, 68, 0.2);">📧</div>
-                            <h4>Email Triage</h4>
-                            <p>Filtering inbox, surfacing priorities</p>
-                            <div class="status">
-                                <span class="status-dot"></span>
-                                <span style="color: var(--secondary);">Active</span>
-                                <span style="color: var(--text-secondary); margin-left: auto;">47 → 8 emails</span>
-                            </div>
+                    </div>
+                    <div class="email-folders">
+                        <div class="folder-item">
+                            <span class="folder-icon">📥</span>
+                            <span>Inbox (Today Only)</span>
+                            <span class="folder-count">8</span>
+                        </div>
+                        <div class="folder-item">
+                            <span class="folder-icon">⚡</span>
+                            <span>@Action</span>
+                            <span class="folder-count">12</span>
+                        </div>
+                        <div class="folder-item">
+                            <span class="folder-icon">⏳</span>
+                            <span>@Waiting</span>
+                            <span class="folder-count">3</span>
+                        </div>
+                        <div class="folder-item">
+                            <span class="folder-icon">📁</span>
+                            <span>@Reference</span>
+                            <span class="folder-count">47</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Personal Section -->
-            <div class="card personal-card">
+            <!-- Mom Care -->
+            <div class="card mom-card">
                 <div class="card-header">
-                    <h2 class="card-title"><span class="icon">🏠</span> Personal — Mom Care</h2>
-                    <button class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.8rem;">View All</button>
+                    <h2 class="card-title">🏠 Mom Care — Boston</h2>
+                    <span style="color: var(--text-secondary); font-size: 0.85rem;">Contained here</span>
                 </div>
                 <div class="card-body">
-                    <div class="personal-item">
-                        <span class="personal-icon">📋</span>
-                        <span class="personal-text">Application submitted to Sunrise Senior Living</span>
-                        <span style="color: var(--secondary); font-size: 0.8rem;">✓ Done</span>
+                    <div class="mom-item">
+                        <span class="mom-icon">✅</span>
+                        <span>Sunrise Senior Living application</span>
+                        <span class="mom-status status-done">Done</span>
                     </div>
-                    <div class="personal-item">
-                        <span class="personal-icon">📞</span>
-                        <span class="personal-text">Call facility coordinator @ 3pm</span>
-                        <span style="color: var(--accent); font-size: 0.8rem;">Today</span>
+                    <div class="mom-item">
+                        <span class="mom-icon">📞</span>
+                        <span>Call facility coordinator</span>
+                        <span class="mom-status status-pending">Today 3:30pm</span>
                     </div>
-                    <div class="personal-item">
-                        <span class="personal-icon">📄</span>
-                        <span class="personal-text">Gather financial documents for Medicaid</span>
-                        <span style="color: var(--text-secondary); font-size: 0.8rem;">This week</span>
+                    <div class="mom-item">
+                        <span class="mom-icon">📄</span>
+                        <span>Gather Medicaid documents</span>
+                        <span class="mom-status">This week</span>
                     </div>
+                    <div class="mom-item">
+                        <span class="mom-icon">🏠</span>
+                        <span>Tour second facility</span>
+                        <span class="mom-status">Feb 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilates -->
+            <div class="card pilates-card">
+                <div class="card-header">
+                    <h2 class="card-title">🧘 Pilates — Protected Time</h2>
+                    <span style="color: var(--calm); font-size: 0.85rem;">Non-negotiable</span>
+                </div>
+                <div class="card-body">
+                    <div class="pilates-schedule">
+                        <div class="pilates-day">
+                            <div class="day">Mon</div>
+                            <div class="time">6:00am</div>
+                        </div>
+                        <div class="pilates-day active">
+                            <div class="day">Wed</div>
+                            <div class="time">6:00am ✓</div>
+                        </div>
+                        <div class="pilates-day">
+                            <div class="day">Fri</div>
+                            <div class="time">6:00am</div>
+                        </div>
+                        <div class="pilates-day">
+                            <div class="day">Sat</div>
+                            <div class="time">9:00am</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+                        <em>"This is your time. Protect it."</em>
+                    </p>
                 </div>
             </div>
         </div>
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- Calendar -->
+            <!-- Today -->
+            <div class="card today-card">
+                <div class="date-display">
+                    <div class="day-name">Wednesday</div>
+                    <div class="day-number">29</div>
+                    <div class="month">January 2026</div>
+                </div>
+            </div>
+
+            <!-- Meetings -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title"><span class="icon">📅</span> January 2026</h2>
+                    <h2 class="card-title">📅 Today's Meetings</h2>
                 </div>
-                <div class="card-body">
-                    <div class="calendar-mini">
-                        <div class="calendar-day">S</div>
-                        <div class="calendar-day">M</div>
-                        <div class="calendar-day">T</div>
-                        <div class="calendar-day">W</div>
-                        <div class="calendar-day">T</div>
-                        <div class="calendar-day">F</div>
-                        <div class="calendar-day">S</div>
-                        <div class="calendar-date">26</div>
-                        <div class="calendar-date has-event">27</div>
-                        <div class="calendar-date">28</div>
-                        <div class="calendar-date today">29</div>
-                        <div class="calendar-date has-event">30</div>
-                        <div class="calendar-date">31</div>
-                        <div class="calendar-date">1</div>
+                <div class="card-body" style="padding: 0;">
+                    <div class="meeting-item">
+                        <div class="meeting-time">10:00am</div>
+                        <div class="meeting-details">
+                            <h4>Team standup</h4>
+                            <p>Weekly check-in</p>
+                        </div>
+                    </div>
+                    <div class="meeting-item">
+                        <div class="meeting-time">1:00pm</div>
+                        <div class="meeting-details">
+                            <h4>TopGolf review w/ Vince</h4>
+                            <p>Proposal walkthrough</p>
+                        </div>
+                    </div>
+                    <div class="meeting-item">
+                        <div class="meeting-time">3:30pm</div>
+                        <div class="meeting-details">
+                            <h4>Boston facility call</h4>
+                            <p>Personal — Mom care</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Inbox -->
-            <div class="card">
+            <!-- Quick Reference -->
+            <div class="card quick-ref">
                 <div class="card-header">
-                    <h2 class="card-title"><span class="icon">📥</span> Inbox</h2>
-                    <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">4</span>
+                    <h2 class="card-title">💡 Daily Ritual</h2>
                 </div>
                 <div class="card-body">
-                    <div class="inbox-item">
-                        <div class="inbox-icon">📝</div>
-                        <div class="inbox-content">
-                            <h4>Review Chick-fil-A brief</h4>
-                            <p>Added 2h ago</p>
-                        </div>
+                    <div class="quick-ref-item">
+                        <strong>☀️ Morning (2 min):</strong><br>
+                        Check "My Day" → Pick 3 priorities
                     </div>
-                    <div class="inbox-item">
-                        <div class="inbox-icon">📊</div>
-                        <div class="inbox-content">
-                            <h4>AI research: NIL trends</h4>
-                            <p>Completed overnight</p>
-                        </div>
+                    <div class="quick-ref-item">
+                        <strong>📧 Email rule:</strong><br>
+                        &lt; 2 min = Do now<br>
+                        &gt; 2 min = @Action folder
                     </div>
-                    <div class="inbox-item">
-                        <div class="inbox-icon">💡</div>
-                        <div class="inbox-content">
-                            <h4>Idea: March Madness activation</h4>
-                            <p>Quick capture</p>
-                        </div>
+                    <div class="quick-ref-item">
+                        <strong>🌙 Evening (3 min):</strong><br>
+                        Clear inbox → Set tomorrow
                     </div>
-                    <div class="inbox-item">
-                        <div class="inbox-icon">📞</div>
-                        <div class="inbox-content">
-                            <h4>Follow up with Boston realtor</h4>
-                            <p>Personal</p>
-                        </div>
+                    <div class="quick-ref-item" style="border-bottom: none;">
+                        <strong>🧘 Remember:</strong><br>
+                        Pilates is protected. Breathe.
                     </div>
-                    
-                    <div class="quick-add" style="margin-top: 16px;">
-                        <input type="text" placeholder="Add to inbox...">
-                        <button>+</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- How It Works -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title"><span class="icon">💡</span> How It Works</h2>
-                </div>
-                <div class="card-body" style="font-size: 0.85rem; color: var(--text-secondary);">
-                    <p style="margin-bottom: 12px;"><strong style="color: var(--text-primary);">Morning (2 min):</strong> Check focus items, scan calendar</p>
-                    <p style="margin-bottom: 12px;"><strong style="color: var(--text-primary);">During Day:</strong> AI handles research, notes, scheduling</p>
-                    <p><strong style="color: var(--text-primary);">Evening (3 min):</strong> Clear inbox, set tomorrow's focus</p>
                 </div>
             </div>
         </aside>
     </main>
 
     <footer class="footer">
-        <p>Built with 🤖 by <a href="#">MELT Atlanta</a> + AI</p>
-        <p style="margin-top: 8px;">Prototype Demo — "Calm in the Chaos" Productivity System</p>
+        <p>Built with care by <strong>MELT Atlanta</strong> + AI</p>
+        <p style="margin-top: 6px; font-size: 0.8rem;">The goal isn't perfection. It's peace.</p>
     </footer>
 </body>
 </html>
